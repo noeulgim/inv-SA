@@ -11,8 +11,8 @@
 
 ## 엄태정
 긍정긍정긍정맨
-git clone https://github.com/eomthins/inv-SA.git
-차분함의 소유자 태정님!
 
 ## 이대성
 수다쟁이 대성님!
+
+
