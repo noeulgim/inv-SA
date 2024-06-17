@@ -16,3 +16,5 @@ git clone https://github.com/eomthins/inv-SA.git
 
 ## 이대성
 수다쟁이 대성님!
+
+왜 그래 ~ 나잖아? 끝까지 해보자!
