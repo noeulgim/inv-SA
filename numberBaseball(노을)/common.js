@@ -1,4 +1,6 @@
+//랜덤숫자생성
 let randomNum;
+//중복 문자 제거, 3자리 수 만들기
 while(true){
 	randomNum = Math.random()*10;
 	if(Math.floor(randomNum) !== 0){
@@ -8,7 +10,9 @@ while(true){
 	}
 }
 randomNum = [...new Set(String(randomNum).replace('.',''))].join('');
+//최종 랜덤숫자
 let getRandomNum = randomNum.substring(0,3);
+
 let input = String(prompt('컴퓨터가 숫자를 생성하였습니다. 답을 맞춰보세요!'));
 let countTry = 0;
 let countS = 0;
