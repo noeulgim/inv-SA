@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulls and Cows</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet">
+    <style>
+  button {
+    background-color: #B3E0FF;
+    border: none;
+    color: black;
+    padding: 8px 12px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    margin: auto;
+    display: inline-block;
+    }
+
+    input {
+      border-color: #6A5ACD;
+      border-radius: 5px;
+      margin-top: 10px;
+      padding: 7px;
+      font-size: 16px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    input[type="text"] {
+    padding: 15px 20px;
+    border: 2px solid #ccc;
+    border-radius: 25px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    outline: none;
+    margin: auto;
+}
+
+body {
+    font-family: Poppins, 'Noto Sans Korean', sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+div {
+    background-color: #f6f6f6;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 60%;
+    max-width: 400px;
+}
+
+</style>
+  </head>
+
+  <body
+    style="font-family: Poppins, 'Noto Sans Korean', sans-serif; text-align: center">
+    <div style="background-color: #f6f6f6;">
+      <h1>숫자야구게임</h1>
+      <h2>Bulls and Cows</h2>
+      <div class="input-container;" style="text-align: center; margin: 20px auto; padding: 20px;">
+        <input type="text" id="guessNumber" placeholder="3자리 숫자를 입력하세요"
+          style="text-align: center;">
+        <button onclick="checkNumber()" style="margin-top: 15px;">도전</button>
+        <p id="result"></p>
+      </div>
+
+    </div>
+    <script>
+      // 랜덤으로 3자리 숫자 생성하기
+      let answerNumber = createNumber();
+
+      function createNumber() {
+          let number = "";
+          let usedNumbers = [];
+      
+          for (let i = 0; i < 3; i++) {
+              let randomNumber;
+            
+              do {
+                  randomNumber = Math.floor(Math.random() * 9) + 1; // math.random은 0~1 사이 난수를 생성하는데, 이것을 9배해서 0~9 사이값이 되도록 출력, +1을 해서 1~9 사이의 난수가 출력되도록함.
+              } while (usedNumbers.includes(randomNumber));
+              number += randomNumber; // 숫자를 차례대로 이어붙여서 3자리 숫자 만들기
+              usedNumbers.push(randomNumber);// 중복된 숫자 방지하기
+          }
+      
+          return number;
+      }
+
+        // 추측한 숫자와 정답을 비교해서 힌트주기(S, B, O)
+      function checkNumber() {
+          let guess = document.getElementById("guessNumber").value;
+          let strikes = 0;
+          let balls = 0;
+          let out = 0;
+      
+          for(let i = 0; i < 3; i++) {
+              if(guess[i] === answerNumber[i]) { // 추측과 정답이 똑같으면 strike
+                  strikes++;
+              } else if(answerNumber.includes(guess[i])) { // 정답숫자를 포함하고 있다면 balls
+                  balls++;
+              } else {
+                  out++; // 땡! 오답입니다. out!
+              }
+          }
+      
+          document.getElementById("result").innerText = `${strikes}S ${balls}B ${out}O`;
+      }
+      </script>
